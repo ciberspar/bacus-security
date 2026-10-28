@@ -1,21 +1,30 @@
-MIT License
+Bacus Protector Source-Visible License 1.0
 
-Copyright (c) 2026 Guafguaf
+Copyright (c) 2026 ciberspar. Todos los derechos reservados.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+1. Permiso de visualización
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+Se permite consultar y estudiar el código fuente de Bacus Protector con fines educativos y de revisión.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+2. Usos no autorizados
+
+Sin autorización previa por escrito del titular de los derechos, no se permite:
+
+* Modificar, adaptar o crear obras derivadas del código.
+* Incorporar el código, total o parcialmente, en otras aplicaciones o proyectos.
+* Redistribuir, sublicenciar o vender el código fuente o versiones derivadas.
+* Eliminar los avisos de derechos de autor o atribuirse la autoría del proyecto.
+
+3. Derechos reservados
+
+Todos los derechos no concedidos expresamente quedan reservados al titular de los derechos de autor.
+
+4. Sin garantía
+
+El software se proporciona «tal cual», sin garantías de ningún tipo, en la medida permitida por la legislación aplicable.
+
+5. Contacto y permisos adicionales
+
+Para solicitar permisos adicionales, se debe contactar al titular de los derechos a través de los medios oficiales publicados en el repositorio.
+
+Esta licencia no limita los derechos que la legislación aplicable no permita excluir.
