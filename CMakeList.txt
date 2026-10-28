@@ -2,13 +2,17 @@
 cmake_minimum_required(VERSION 3.16)
 
 project(BacusProtector
-    VERSION 0.1.0
-    DESCRIPTION "Bacus Protector security application"
+    VERSION 0.3.0
+    DESCRIPTION "Lightweight Purple Team security toolkit"
     LANGUAGES CXX
 )
 
 option(BACUS_BUILD_TUI "Build terminal interface" ON)
-option(BACUS_BUILD_GUI "Build graphical interface" OFF)
+option(BACUS_BUILD_GUI "Build Qt6 graphical interface" OFF)
+
+if(NOT BACUS_BUILD_TUI AND NOT BACUS_BUILD_GUI)
+    message(FATAL_ERROR "Enable at least one interface")
+endif()
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -19,15 +23,26 @@ add_library(bacus_core
 )
 
 target_include_directories(bacus_core
-    PUBLIC ${PROJECT_SOURCE_DIR}/include
+    PUBLIC "${PROJECT_SOURCE_DIR}/include"
 )
+
+if(MSVC)
+    target_compile_options(bacus_core PRIVATE /W4)
+else()
+    target_compile_options(bacus_core PRIVATE
+        -Wall -Wextra -Wpedantic
+    )
+endif()
 
 if(BACUS_BUILD_TUI)
     add_executable(bacus-protector-tui
         src/main.cpp
         src/tui/tui.cpp
     )
-    target_link_libraries(bacus-protector-tui PRIVATE bacus_core)
+
+    target_link_libraries(
+        bacus-protector-tui PRIVATE bacus_core
+    )
 endif()
 
 if(BACUS_BUILD_GUI)
@@ -39,15 +54,8 @@ if(BACUS_BUILD_GUI)
         src/gui/gui.cpp
     )
 
-    target_link_libraries(bacus-protector-gui
+    target_link_libraries(
+        bacus-protector-gui
         PRIVATE bacus_core Qt6::Widgets
-    )
-endif()
-
-if(MSVC)
-    target_compile_options(bacus_core PRIVATE /W4)
-else()
-    target_compile_options(bacus_core PRIVATE
-        -Wall -Wextra -Wpedantic
     )
 endif()
