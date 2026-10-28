@@ -2,67 +2,55 @@
 #include "protector.hpp"
 
 #include <iostream>
-#include <limits>
 #include <string>
 #include <vector>
 
 namespace {
 
-void show_results(const std::vector<bacus::CheckResult>& results) {
+void show_results(
+    const std::vector<bacus::CheckResult>& results
+) {
     for (const auto& result : results) {
         std::cout << "\n[" << result.status << "] "
-                  << result.name << "\n"
-                  << "  " << result.details << "\n";
+                  << result.name << '\n'
+                  << "  " << result.details << '\n';
     }
 }
 
 void pause() {
     std::cout << "\nPresiona ENTER para continuar...";
-    std::cin.ignore(
-        std::numeric_limits<std::streamsize>::max(), '\n'
-    );
+    std::string line;
+    std::getline(std::cin, line);
 }
 
 } // namespace
 
 int run_tui() {
     while (true) {
-        std::cout << "\n"
-                  << "============================\n"
-                  << "      BACUS PROTECTOR\n"
-                  << "============================\n"
-                  << "Version " << bacus::version() << "\n\n"
-                  << "1. Analizar un archivo\n"
-                  << "2. Auditar el sistema\n"
-                  << "3. Auditar puertos\n"
-                  << "4. Informacion\n"
-                  << "0. Salir\n\n"
-                  << "Opcion: ";
+        std::cout
+            << "\n================================\n"
+            << "       BACUS PROTECTOR\n"
+            << "       PURPLE TEAM LAB\n"
+            << "================================\n"
+            << "Version " << bacus::version() << "\n\n"
+            << "1. Analizar archivo\n"
+            << "2. Auditar sistema\n"
+            << "3. Inventario de herramientas\n"
+            << "4. Auditoría de red/puertos\n"
+            << "5. Información\n"
+            << "0. Salir\n\n"
+            << "Opcion: ";
 
-        int option = -1;
-
-        if (!(std::cin >> option)) {
-            if (std::cin.eof()) {
-                return 0;
-            }
-
-            std::cin.clear();
-            std::cin.ignore(
-                std::numeric_limits<std::streamsize>::max(), '\n'
-            );
-            std::cout << "Opcion invalida.\n";
-            continue;
-        }
-
-        std::cin.ignore(
-            std::numeric_limits<std::streamsize>::max(), '\n'
-        );
-
-        if (option == 0) {
+        std::string choice;
+        if (!std::getline(std::cin, choice)) {
             return 0;
         }
 
-        if (option == 1) {
+        if (choice == "0") {
+            return 0;
+        }
+
+        if (choice == "1") {
             std::string path;
             std::cout << "Ruta del archivo: ";
 
@@ -71,15 +59,18 @@ int run_tui() {
             }
 
             show_results(bacus::scan_file(path));
-        } else if (option == 2) {
+        } else if (choice == "2") {
             show_results(bacus::audit_system());
-        } else if (option == 3) {
+        } else if (choice == "3") {
+            show_results(bacus::audit_tools());
+        } else if (choice == "4") {
             show_results(bacus::audit_ports());
-        } else if (option == 4) {
+        } else if (choice == "5") {
             std::cout
-                << "\nBacus Protector " << bacus::version() << "\n"
-                << "Prototipo en desarrollo.\n"
-                << "No sustituye a un antivirus.\n";
+                << "\nBacus Protector " << bacus::version() << '\n'
+                << "Plataforma de ciberseguridad Purple Team.\n"
+                << "Los módulos pendientes se identifican claramente.\n"
+                << "No es todavía un antivirus completo.\n";
         } else {
             std::cout << "Opcion desconocida.\n";
         }
