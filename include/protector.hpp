@@ -14,8 +14,10 @@ struct CheckResult {
 };
 
 std::string version();
+
 std::vector<CheckResult> audit_system();
 std::vector<CheckResult> audit_ports();
+std::vector<CheckResult> audit_tools();
 std::vector<CheckResult> scan_file(const std::string& path);
 
 } // namespace bacus
